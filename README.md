@@ -2,8 +2,6 @@
 
 ![com2csv screenshot](Screenshot_20230327_204212.png)
 
-[com2csv.exe download package v0.0.1](https://github.com/joeraven0/com2csv/releases/tag/v0.0.1)
-
 ## Description
 
 A GUI application for reading data from a barcode scanner and saving it to a CSV file.
@@ -13,7 +11,8 @@ This application connects to a barcode scanner via a serial port (physical or em
 The application has a simple GUI with a text box to display read data and one button: "Close" to exit the application.
 
 ## Installation
-Run com2csv.py OR install exe on Windows.
+Linux and Windows: com2csv.py
+Windows pyinstaller executable (.exe): [com2csv.exe download package v0.0.1](https://github.com/joeraven0/com2csv/releases/tag/v0.0.1)
 
 ## Configuration
 The program automatically identifies the barcode scanner based on the device description, which must contain "barcode", "scanner" or "serial device". No manual com-port selection available. com2csv.py file must be changed manually.
