@@ -1,6 +1,6 @@
 # com2csv
 
-![com2csv screenshot](Screenshot_20230327_183841.png)
+![com2csv screenshot](Screenshot_20230327_204212.png)
 
 [com2csv.exe download package v0.0.1](https://github.com/joeraven0/com2csv/releases/tag/v0.0.1)
 
