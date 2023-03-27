@@ -1,6 +1,8 @@
 """
 com2csv.py - En GUI-applikation för att läsa in data från en streckkodsläsare och spara den till en CSV-fil.
 
+Version: 0.0.1
+
 Beskrivning:
 Denna applikation ansluter till en streckkodsläsare via en seriell port och lyssnar på inkommande data. All inläst data sparas till en CSV-fil tillsammans med tidpunkten då datat lästes in. Om samma data läses in flera gånger skrivs endast en kopia till filen.
 
@@ -121,7 +123,7 @@ class MyApp(QtWidgets.QWidget):
         font = QtGui.QFont()
         font.setItalic(True)
         self.bottom_text.setFont(font)
-        self.bottom_text.setText("Licensierad under GNU GPL version 3.0\n2023 J.Ringstad\nhttps://github.com/joeraven0/com2csv")
+        self.bottom_text.setText("Licensierad under GNU GPL version 3.0\nV0.0.1 2023 J.Ringstad\nhttps://github.com/joeraven0/com2csv")
         self.bottom_text.setMaximumWidth(300)
         self.bottom_text.setWordWrap(True)
         layout.addStretch()
