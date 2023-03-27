@@ -16,5 +16,5 @@ The application has a simple GUI with a text box to display read data and one bu
 Run com2csv.py OR install exe on Windows.
 
 ## Configuration
-The program automatically identifies the barcode scanner based on the device description, which typically contains the words "barcode" or "scanner".
+The program automatically identifies the barcode scanner based on the device description, which must contain "barcode", "scanner" or "serial device". No manual com-port selection available. com2csv.py file must be changed manually.
 The CSV-file will be created in same directory as com2csv.py file.
