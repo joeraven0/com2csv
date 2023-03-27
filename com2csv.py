@@ -121,7 +121,7 @@ class MyApp(QtWidgets.QWidget):
         font = QtGui.QFont()
         font.setItalic(True)
         self.bottom_text.setFont(font)
-        self.bottom_text.setText("Licensierad under GNU GPL version 3.0\n2023 jmux.se")
+        self.bottom_text.setText("Licensierad under GNU GPL version 3.0\n2023 J.Ringstad\nhttps://github.com/joeraven0/com2csv")
         self.bottom_text.setMaximumWidth(300)
         self.bottom_text.setWordWrap(True)
         layout.addStretch()
