@@ -30,7 +30,7 @@ def get_serial_port():
     ports = list(serial.tools.list_ports.comports())
 
     # Filter list of ports to those with "barcode" or "scanner" in description
-    barcode_scanner_ports = [port for port in ports if "barcode" in port.description.lower() or "scanner" in port.description.lower()]
+    barcode_scanner_ports = [port for port in ports if "barcode" in port.description.lower() or "scanner" in port.description.lower() or "serial device" in port.description.lower()]
 
     # Select first port in filtered list, or return None if no matching ports found
     return barcode_scanner_ports[0].device if barcode_scanner_ports else None
