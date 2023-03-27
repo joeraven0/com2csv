@@ -10,8 +10,19 @@ This application connects to a barcode scanner via a serial port (physical or em
 
 The application has a simple GUI with a text box to display read data and one button: "Close" to exit the application.
 
-## Installation
+## Environment
+
+Written in Python 3.10
+
+
+Python requirements
+
+serial, sys, csv, time, datetime, PyQt5, QtWidgets, QtGui, QtCore, serial.tools.list_ports
+
+## OS
+
 Linux and Windows: com2csv.py
+
 Windows pyinstaller executable (.exe): [com2csv.exe download package v0.0.1](https://github.com/joeraven0/com2csv/releases/tag/v0.0.1)
 
 ## Configuration
