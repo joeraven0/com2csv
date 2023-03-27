@@ -8,7 +8,7 @@ A GUI application for reading data from a barcode scanner and saving it to a CSV
 Description:
 This application connects to a barcode scanner via a serial port and listens for incoming data. All read data is saved to a CSV file along with the time the data was read. If the same data is read multiple times, only one copy is written to the file.
 
-The application has a simple GUI with a text box to display read data and two buttons: "Close" to exit the application and "Delete data" to clear all previously saved data.
+The application has a simple GUI with a text box to display read data and one button: "Close" to exit the application.
 
 ## Installation
 Run com2csv.py OR install exe on Windows.
