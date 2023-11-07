@@ -1,7 +1,13 @@
 """
 com2csv.py - En GUI-applikation för att läsa in data från en streckkodsläsare och spara den till en CSV-fil.
 
-Version: 0.0.1
+Version: 0.0.2
+
+
+Utgåva
+0.0.1: Första utgåvan
+0.0.2: Lagt till räknare som räknar upp och nollställs vid läsning av #NUMBER exempelvis #1.
+
 
 Beskrivning:
 Denna applikation ansluter till en streckkodsläsare via en seriell port och lyssnar på inkommande data. All inläst data sparas till en CSV-fil tillsammans med tidpunkten då datat lästes in. Om samma data läses in flera gånger skrivs endast en kopia till filen.
@@ -65,7 +71,7 @@ class SerialThread(QtCore.QThread):
 class MyApp(QtWidgets.QWidget):
     def __init__(self):
         super().__init__()
-
+        self.counter = 1
         # Get serial port for barcode scanner or scanner
         port_name = get_serial_port()
         if not port_name:
@@ -123,7 +129,7 @@ class MyApp(QtWidgets.QWidget):
         font = QtGui.QFont()
         font.setItalic(True)
         self.bottom_text.setFont(font)
-        self.bottom_text.setText("Licensierad under GNU GPL version 3.0\nv0.0.1 2023 J.Ringstad\nhttps://github.com/joeraven0/com2csv")
+        self.bottom_text.setText("Licensierad under GNU GPL version 3.0\nv0.0.2 2023-11-07 J.Ringstad\nhttps://github.com/joeraven0/com2csv")
         self.bottom_text.setMaximumWidth(300)
         self.bottom_text.setWordWrap(True)
         layout.addStretch()
@@ -154,20 +160,38 @@ class MyApp(QtWidgets.QWidget):
 
     def read_data(self, data):
         now = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-        # Open CSV-file in read mode to check if data already exists
+        # Kolla om datat är en nollställningskod
+        if data.startswith('#'):
+            try:
+                # Försök att extrahera numret och nollställ räknaren
+                _, number = data.split('#')
+                if number.isdigit():
+                    self.counter = 1
+                    self.data_panel.append(f'Räknaren nollställd vid # {number}')
+            except ValueError:
+                # Hantera fel om split eller omvandling till siffra misslyckas
+                self.data_panel.append('Felaktigt format på nollställningskod.')
+        else:
+            pass
+            
+            
+        # Skriv ut den aktuella räknaren tillsammans med datat
+        self.data_panel.append(f'{now}  {data}  Räknare: {self.counter}')
+
+        # Öppna CSV-filen i läsläge för att kolla om datat redan finns
         with open(csv_filename, 'r') as f:
             reader = csv.reader(f)
-            # Check if data already exists in file
             if any(data in row for row in reader):
-                # Print message to output window in red text
-                message = f"<font color='red'>Data already exists in file</font>"
-                self.data_panel.append(message)
-
+                self.data_panel.append("<font color='red'>Data already exists in file</font>")
             else:
-                # Write data to file if it doesn't already exist
-                self.csv_writer.writerow([now, data])
-                self.csv_file.flush() # write buffer to file
-        self.data_panel.append(f'{now}  {data}')
+                # Skriv datat och räknaren till CSV-filen
+                if data.startswith('#'):
+                    self.csv_writer.writerow([now, data, '-'])
+                    pass
+                else:
+                    self.csv_writer.writerow([now, data, self.counter])
+                    self.csv_file.flush()  # Töm bufferten till filen
+                    self.counter += 1
 
 
     def delete_data(self):
